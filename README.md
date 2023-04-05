@@ -1,4 +1,8 @@
 # Medical Imaging Segmentation Toolkit
+Please cite the following if you use this code for your work:
+
+> A. Celaya et al., "PocketNet: A Smaller Neural Network For Medical Image Analysis," in IEEE Transactions on Medical Imaging, doi: 10.1109/TMI.2022.3224873.
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -23,14 +27,14 @@ The Medical Imaging Segmentation Toolkit (MIST) is a simple 3D medical imaging s
 
 The following features are supported by MIST: 
 
-| Feature                                                                                         | MIST |
-|-------------------------------------------------------------------------------------------------|------|
-| [NVIDIA Data Loading Library (DALI)](https://docs.nvidia.com/deeplearning/dali/user-guide/docs/) | Yes  |
-| [Automatic mixed precision (AMP)](https://www.tensorflow.org/guide/mixed_precision)             | Yes  |
-| [Accelerated Linear Algebra (XLA)](https://www.tensorflow.org/xla)                              | Yes  |
-| [Horovod Multi-GPU (NCCL)](https://horovod.ai/)                                                 | No   |
+| Feature                                                                                           | MIST |
+|---------------------------------------------------------------------------------------------------|------|
+| [NVIDIA Data Loading Library (DALI)](https://docs.nvidia.com/deeplearning/dali/user-guide/docs/)  | Yes  |
+| [Automatic mixed precision (AMP)](https://www.tensorflow.org/guide/mixed_precision)               | Yes  |
+| [Accelerated Linear Algebra (XLA)](https://www.tensorflow.org/xla)                                | Yes  |
+| [Multi-GPU training with tf.distribute](https://www.tensorflow.org/api_docs/python/tf/distribute) | Yes  |
 
-Support for Horovod Multi-GPU (NCCL) is an upcoming feature.
+Support for PyTorch is coming soon.
     
 ## Setup
 ### Requirements
@@ -163,21 +167,22 @@ python main.py --help
 
 The following output is printed when running the command above:
 ```
-usage: main.py [-h] [--exec-mode {all,analyze,preprocess,train}] [--data DATA] [--gpus GPUS [GPUS ...]]
-               [--seed SEED] [--tta [BOOLEAN]] [--results RESULTS] [--processed-data PROCESSED_DATA]
-               [--config CONFIG] [--paths PATHS] [--amp [BOOLEAN]] [--xla [BOOLEAN]]
-               [--batch-size BATCH_SIZE] [--patch-size PATCH_SIZE [PATCH_SIZE ...]]
+usage: main.py [-h] [--exec-mode {all,analyze,preprocess,train}] [--data DATA]
+               [--gpus GPUS [GPUS ...]] [--seed SEED] [--tta [BOOLEAN]] [--results RESULTS]
+               [--processed-data PROCESSED_DATA] [--config CONFIG] [--paths PATHS] [--amp [BOOLEAN]]
+               [--xla [BOOLEAN]] [--batch-size BATCH_SIZE] [--patch-size PATCH_SIZE [PATCH_SIZE ...]]
                [--learning-rate LEARNING_RATE] [--momentum MOMENTUM]
                [--lr-scheduler {none,poly,cosine_annealing}] [--end-learning-rate END_LEARNING_RATE]
                [--cosine-annealing-first-cycle-steps COSINE_ANNEALING_FIRST_CYCLE_STEPS]
                [--cosine-annealing-peak-decay COSINE_ANNEALING_PEAK_DECAY] [--optimizer {sgd,adam}]
                [--lookahead [BOOLEAN]] [--clip-norm [BOOLEAN]] [--clip-norm-max CLIP_NORM_MAX]
                [--model {nnunet,unet,resnet,densenet,hrnet}] [--depth DEPTH]
-               [--init-filters INIT_FILTERS] [--pocket [BOOLEAN]] [--oversampling OVERSAMPLING]
+               [--init-filters INIT_FILTERS] [--deep-supervision [BOOLEAN]] [--pocket [BOOLEAN]]
+               [--oversampling OVERSAMPLING] [--use-precomputed-weights [BOOLEAN]]
                [--class-weights CLASS_WEIGHTS [CLASS_WEIGHTS ...]] [--loss {dice_ce,dice,gdl,gdl_ce}]
-               [--sw-overlap SW_OVERLAP] [--blend-mode {gaussian,constant}] [--post-no-morph [BOOLEAN]]
-               [--post-no-largest [BOOLEAN]] [--nfolds NFOLDS] [--folds FOLDS [FOLDS ...]]
-               [--epochs EPOCHS] [--steps-per-epoch STEPS_PER_EPOCH]
+               [--sw-overlap SW_OVERLAP] [--blend-mode {gaussian,constant}]
+               [--post-no-morph [BOOLEAN]] [--post-no-largest [BOOLEAN]] [--nfolds NFOLDS]
+               [--folds FOLDS [FOLDS ...]] [--epochs EPOCHS] [--steps-per-epoch STEPS_PER_EPOCH]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -210,7 +215,8 @@ optional arguments:
                         Length of a cosine decay cycle in steps, only with cosine_annealing scheduler
                         (default: 512)
   --cosine-annealing-peak-decay COSINE_ANNEALING_PEAK_DECAY
-                        Multiplier reducing initial learning rate for cosine annealing (default: 0.95)
+                        Multiplier reducing initial learning rate for cosine annealing (default:
+                        0.95)
   --optimizer {sgd,adam}
                         Optimizer (default: adam)
   --lookahead [BOOLEAN]
@@ -222,16 +228,21 @@ optional arguments:
   --model {nnunet,unet,resnet,densenet,hrnet}
   --depth DEPTH         Depth of U-Net (default: None)
   --init-filters INIT_FILTERS
-                        Number of filters to start U-Net (default: 32)
-  --pocket [BOOLEAN]    Use pocket U-Net (default: False)
+                        Number of filters to start network (default: 32)
+  --deep-supervision [BOOLEAN]
+                        Use deep supervision (default: False)
+  --pocket [BOOLEAN]    Use pocket version of network (default: False)
   --oversampling OVERSAMPLING
                         Probability of crop centered on foreground voxel (default: 0.4)
+  --use-precomputed-weights [BOOLEAN]
+                        Use precomputed class weights (default: False)
   --class-weights CLASS_WEIGHTS [CLASS_WEIGHTS ...]
                         Specify class weights (default: None)
   --loss {dice_ce,dice,gdl,gdl_ce}
                         Loss function for training (default: dice_ce)
   --sw-overlap SW_OVERLAP
-                        Amount of overlap between scans during sliding window inference (default: 0.5)
+                        Amount of overlap between scans during sliding window inference (default:
+                        0.5)
   --blend-mode {gaussian,constant}
                         How to blend output of overlapping windows (default: gaussian)
   --post-no-morph [BOOLEAN]
@@ -245,6 +256,7 @@ optional arguments:
   --steps-per-epoch STEPS_PER_EPOCH
                         Steps per epoch. By default ceil(training_dataset_size / batch_size / gpus)
                         (default: None)
+
 ```
 
 ## Inference
