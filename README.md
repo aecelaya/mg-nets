@@ -33,7 +33,7 @@ and a ReLU non-linearity. Finally, we use the
 [PocketNet paradigm](https://ieeexplore.ieee.org/document/9964128) for the FMG-Net and W-Net, 
 and do not double the number of features after downsampling to a coarser grid.
 
-<img src="images/mgnet_diagram_1.png">\
+<img src="images/mgnet_diagram_1.png">
 
 <img src="images/mgnet_diagram_2.png">
 
