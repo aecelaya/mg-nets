@@ -46,12 +46,7 @@ We include a Dockerfile in this repository that pulls NVIDIA's TensorFlow 2 NGC 
 * GPU with sufficient memory and compute capacity to handle 3D image segmentation
 
 ### Get Started
-To start running the MIST pipeline, first clone this repository.
-
-```
-git clone https://github.com/aecelaya/mg-nets.git
-cd mg-nets
-```
+To start running this pipeline, first clone this repository.
 
 Next we use Dockerfile in this repository to build a Docker image named ```mgnets```.
 ```
@@ -60,7 +55,7 @@ docker build -t mgnets .
 
 Once the container is ready, we launch an interactive session with the following command. Notice that we mount a directory to the ```/workspace``` directory in the container. The idea is to mount the local directory containing our data to the workspace directory. Please modify this command to match your system.
 ```
-docker run --rm -it -u $(id -u):$(id -g) --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /rsrch1/ip/aecelaya/:/workspace mist
+docker run --rm -it -u $(id -u):$(id -g) --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -v /path/to/your/data:/workspace mist
 ```
 
 Once inside the container, we can run the training pipeline. Specify the GPU and model that we want to use.
