@@ -22,9 +22,9 @@ for various network depths. Note that we define the depth of each network to be 
 of different resolution grids used by each architecture. The following rules govern the 
 skip connections in each of these networks:
 
-1. If we transfer features to a coarser grid (i.e., are on the encoder branch), then we pass all of the features to all subsequent upsampling operations at the current grid level.
+1. If we transfer features to a coarser grid (i.e., are on a encoder branch), then we pass all of the features to all subsequent upsampling operations at the current grid level.
 
-2. If we encounter a ``peak'' (i.e., a transfer to a finer grid immediately followed by a transfer to a coarser grid), then we pass the features from the peak only to the next set of features at the same grid level.
+2. If we encounter a "peak" (i.e., a transfer to a finer grid immediately followed by a transfer to a coarser grid), then we pass the features from the peak only to the next set of features at the same grid level.
 
 The second figure seen below illustrates these skip connection patterns for the U-Net, 
 FMG-Net, and W-Net for the network depth set to three. In addition, each convolutional 
