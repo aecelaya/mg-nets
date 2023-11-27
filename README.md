@@ -6,9 +6,9 @@ Both networks are implemented in TensorFlow. PyTorch versions are in progress.
 
 Please cite the following if you use these architectures or code for your work
 
-> A. Celaya et al., "PocketNet: A Smaller Neural Network For Medical Image Analysis," in IEEE Transactions on Medical Imaging, doi: 10.1109/TMI.2022.3224873.
+> [A. Celaya et al., "PocketNet: A Smaller Neural Network For Medical Image Analysis," in IEEE Transactions on Medical Imaging, doi: 10.1109/TMI.2022.3224873.](https://ieeexplore.ieee.org/document/9964128)
 >
-> A. Celaya, B. Riviere, and D. Fuentes., "FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation," arXiv preprint arXiv:2304.02725, 2023.
+> [A. Celaya, B. Riviere, and D. Fuentes., "FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation," arXiv preprint arXiv:2304.02725, 2023.](https://arxiv.org/abs/2304.02725)
 
 
 ## About FMG-Net and W-Net
