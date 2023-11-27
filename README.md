@@ -1,12 +1,14 @@
 # FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation
 
-Implementation of FMG-Net and W-Net based on the [MIST](https://github.com/aecelaya/MIST) framework.
+Implementation of FMG-Net and W-Net based on the [MIST](https://github.com/aecelaya/MIST) framework. 
 
-Please cite the following if you use this code or architectures for your work
+Both networks are implemented in TensorFlow. PyTorch versions are in progress.
+
+Please cite the following if you use these architectures or code for your work
 
 > A. Celaya et al., "PocketNet: A Smaller Neural Network For Medical Image Analysis," in IEEE Transactions on Medical Imaging, doi: 10.1109/TMI.2022.3224873.
 >
-> A. Celaya, B. Riviere, and D. Fuentes., "FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation," submitted to 37th Conference on Neural Information Processing Systems, under review, arXiv preprint arXiv:2304.02725.
+> A. Celaya, B. Riviere, and D. Fuentes., "FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation," arXiv preprint arXiv:2304.02725, 2023.
 
 
 ## About FMG-Net and W-Net
