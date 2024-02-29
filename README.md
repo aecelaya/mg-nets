@@ -1,8 +1,8 @@
 # FMG-Net and W-Net: Multigrid Inspired Deep Learning Architectures for Medical Imaging Segmentation
 
-Implementation of FMG-Net and W-Net based on the [MIST](https://github.com/aecelaya/MIST) framework. 
+### This is old code. Newer, PyTorch implementations of these networks are available [here](https://github.com/aecelaya/MIST)
 
-Both networks are implemented in TensorFlow. PyTorch versions are in progress.
+Both networks are implemented in TensorFlow. PyTorch versions are available [here](https://github.com/aecelaya/MIST).
 
 Please cite the following if you use these architectures or code for your work
 
